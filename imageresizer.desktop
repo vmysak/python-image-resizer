@@ -1,11 +1,11 @@
-#/usr/share/kservices5/ServiceMenus/imageresizer.desktop 
+#/usr/share/kservices5/ServiceMenus/imageresizer.desktop
 #/usr/share/kde4/services/ServiceMenus/imageresizer.desktop
 
 [Desktop Entry]
 Type=Service
 X-KDE-ServiceTypes=KonqPopupMenu/Plugin
 MimeType=image/*;
-Actions=resizesq;resizes;resizeq;
+Actions=resizesq;resizes;resizeq;resizef;
 X-KDE-Priority=TopLevel
 X-KDE-Submenu=Image Resizer
 
