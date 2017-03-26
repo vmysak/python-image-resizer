@@ -20,7 +20,7 @@ s=500,KB
 q=5,MB
 """
 
-size_keys=['s','q']
+size_keys=['s','q', 'f']
 yes_no=['y','n']
 settings = ['DIR', 'SIZE', 'MAXFILESIZE']
 
@@ -87,6 +87,11 @@ def transform_file():
         s_keys=options.size_keys.split(",")
         for key in s_keys:
             with img.clone() as i:
+                if(key == 'f'):
+                    path=getdirpath(options.filename)+getfname(options.filename)+"_"+key+".jpg"
+                    i.save(filename=path)
+                    print 'Saved to: %s' % (path)
+                    continue
                 scale=(max(img.size))/float(config['SIZE'][key])
                 i.resize(int(img.size[0]/scale),int(img.size[1]/scale))
                 quality=100
