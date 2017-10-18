@@ -21,6 +21,10 @@ Exec=resizer -f %f -k s
 Name=Resize Q
 Exec=resizer -f %f -k q
 
+[Desktop Action resizeqs]
+Name=Resize QS
+Exec=resizer -f %f -k qs
+
 [Desktop Action resizef]
 Name=Resize F
 Exec=resizer -f %f -k f
