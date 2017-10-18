@@ -14,13 +14,15 @@ q=/root/Darktable/Export/q
 [SIZE]
 s=1200
 q=2500
+qs=1600
 
 [MAXFILESIZE]
 s=500,KB
 q=5,MB
+qs=1500,KB
 """
 
-size_keys=['s','q', 'f']
+size_keys=['s','q','qs', 'f']
 yes_no=['y','n']
 settings = ['DIR', 'SIZE', 'MAXFILESIZE']
 
