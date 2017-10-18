@@ -5,7 +5,7 @@
 Type=Service
 X-KDE-ServiceTypes=KonqPopupMenu/Plugin
 MimeType=image/*;
-Actions=resizesq;resizes;resizeq;resizef;
+Actions=resizesq;resizes;resizeq;resizeqs;resizef;
 X-KDE-Priority=TopLevel
 X-KDE-Submenu=Image Resizer
 
