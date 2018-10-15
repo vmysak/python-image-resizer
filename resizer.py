@@ -98,21 +98,22 @@ def transform_file():
                 i.resize(int(img.size[0]/scale),int(img.size[1]/scale))
                 quality=100
                 while(True):
-                    i.compression_quality = quality
-                    quality=quality-1
-                    img_bin = i.make_blob()
+                    img_i = i.clone();
+                    img_i.compression_quality = quality
+                    quality = quality-1
+                    img_bin = img_i.make_blob()
                     bytesize=getsizeinbytes(config['MAXFILESIZE'][key].split(",")[0], config['MAXFILESIZE'][key].split(",")[1])
                     if(sys.getsizeof(img_bin)<bytesize):
-                        printimagedata("After resize", i, img_bin)
+                        printimagedata("After resize", img_i, img_bin)
                         print 'Key: %s' % (str(key))
                         print 'Compression quality level: %s' % (str(quality))
                         if 'y'==options.use_dirs:
                             path=getdirpath(config['DIR'][key])+getfname(options.filename)+"_"+key+".jpg"
-                            i.save(filename=path)
+                            img_i.save(filename=path)
                             print 'Saved to: %s' % (path)
                         else:
                             path=getdirpath(options.filename)+getfname(options.filename)+"_"+key+".jpg"
-                            i.save(filename=path)
+                            img_i.save(filename=path)
                             print 'Saved to: %s' % (path)
                         break
 
