@@ -1,0 +1,75 @@
+**/yarn.lock
+**/.yarnrc
+**/.npmrc
+**/localscripts
+**/build/**
+**/node_modules
+firefox_root/
+**/*.code-workspace
+**/.vscode
+
+*.log
+*.log.json
+target/
+
+# Idea #
+*.iml
+.idea/
+
+
+# OS #
+###################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Eclipse #
+target/
+.settings/
+.metadata/
+.project
+.classpath
+.project
+.buildpath
+
+# Maven #
+###################
+log/
+target/
+
+# Intellij #
+###################
+.idea/
+*.iml
+*.iws
+
+# NetBeans #
+###################
+nbproject/private/
+# build/
+nbbuild/
+nbdist/
+nbactions.xml
+nb-configuration.xml
+
+# Sublime #
+###################
+*sublime-*
+
+
+# Angular frontend
+**/logs/*
+!.gitkeep
+**/node_modules/
+**/bower_components/
+tmp
+.DS_Store
+.idea
+.history
+
+!.scripts/**
+!.yarnprofiles/**
