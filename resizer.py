@@ -2,9 +2,8 @@
 import os
 import sys
 import configparser
-import cStringIO
 from wand.image import Image
-from optparse import OptionParser
+import argparse
 
 basic_ini="""
 [DIR]
@@ -38,47 +37,47 @@ def readConfig():
         with open(getdirpath(os.path.realpath(__file__))+'.resizer.config.ini.tmp','w+') as inifile:
             inifile.write(basic_ini)
             inifile.seek(0)
-            config.readfp(inifile)
+            config.read_file(inifile)
             os.remove(getdirpath(os.path.realpath(__file__))+'.resizer.config.ini.tmp')
 
 def initOptions():
     global options
-    optParser = OptionParser()
-    optParser.add_option("-f",
+    optParser =  argparse.ArgumentParser()
+    optParser.add_argument("-f",
                          dest="filename",
                          help="image file to resize",
                          metavar="/path/to/file")
-    optParser.add_option("-k",
+    optParser.add_argument("-k",
                          dest="size_keys",
                          help="comma separated size keys to resize ('s,q' by default)",
                          metavar="s,q",
                          default="s,q")
-    optParser.add_option("-d",
+    optParser.add_argument("-d",
                          dest="use_dirs",
                          help="write resulting images to separate dirs (disabled by default)",
                          metavar="y|n",
                          default="n")
-    optParser.add_option("-i",
+    optParser.add_argument("-i",
                          dest="use_ini",
                          help="use external ini file with config (disabled by default)",
                          metavar="y|n",
                          default="n")
-    options, args = optParser.parse_args()
+    options = optParser.parse_args()
 
 def check_options():
     s_keys=options.size_keys.split(",")
     for key in s_keys:
         if not key in size_keys:
-            print 'wrong -k size key: please use one of %s' % (size_keys)
-            exit();
+            print('wrong -k size key: please use one of {}'.format(size_keys))
+            exit()
     s_dir=options.use_dirs
     if not s_dir in yes_no:
-        print 'wrong -d key: please use one of %s' % (yes_no)
-        exit();
+        print ('wrong -d key: please use one of {}'.format(yes_no))
+        exit()
     s_ini=options.use_ini
     if not s_ini in yes_no:
-        print 'wrong -i key: please use one of %s' % (yes_no)
-        exit();
+        print ('wrong -i key: please use one of {}'.format(yes_no))
+        exit()
 
 def transform_file():
     with Image(filename=options.filename) as img:
@@ -92,7 +91,7 @@ def transform_file():
                 if(key == 'f'):
                     path=getdirpath(options.filename)+getfname(options.filename)+"_"+key+".jpg"
                     i.save(filename=path)
-                    print 'Saved to: %s' % (path)
+                    print('Saved to {}'.format(path))
                     continue
                 scale=(max(img.size))/float(config['SIZE'][key])
                 i.resize(int(img.size[0]/scale),int(img.size[1]/scale))
@@ -105,20 +104,19 @@ def transform_file():
                     bytesize=getsizeinbytes(config['MAXFILESIZE'][key].split(",")[0], config['MAXFILESIZE'][key].split(",")[1])
                     if(sys.getsizeof(img_bin)<bytesize):
                         printimagedata("After resize", img_i, img_bin)
-                        print 'Key: %s' % (str(key))
-                        print 'Compression quality level: %s' % (str(quality))
+                        print ('Compression quality level: {}'.format(str(quality)))
                         if 'y'==options.use_dirs:
                             path=getdirpath(config['DIR'][key])+getfname(options.filename)+"_"+key+".jpg"
                             img_i.save(filename=path)
-                            print 'Saved to: %s' % (path)
+                            print ('Saved to: {}'.format(path))
                         else:
                             path=getdirpath(options.filename)+getfname(options.filename)+"_"+key+".jpg"
                             img_i.save(filename=path)
-                            print 'Saved to: %s' % (path)
+                            print ('Saved to: {}'.format(path))
                         break
 
 def printimagedata(msg, img, img_bin):
-    print '\n%s:\nDimensions: %s,\nImage size: %s bytes' % (str(msg),str(img.size), str(sys.getsizeof(img_bin)))
+    print ('\n{}:\nDimensions: {},\nImage size: {} bytes'.format(str(msg),str(img.size), str(sys.getsizeof(img_bin))))
 
 def getsizeinbytes(amount, dims):
     if dims in ['MB', 'Mb', 'mb']:
