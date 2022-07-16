@@ -34,11 +34,11 @@ def readConfig():
     if 'y'==options.use_ini:
         config.read("resizer.ini")
     else:
-        with open(getdirpath(os.path.realpath(__file__))+'.resizer.config.ini.tmp','w+') as inifile:
+        with open('/tmp/.resizer.config.ini.tmp','w+') as inifile:
             inifile.write(basic_ini)
             inifile.seek(0)
             config.read_file(inifile)
-            os.remove(getdirpath(os.path.realpath(__file__))+'.resizer.config.ini.tmp')
+            os.remove('/tmp/.resizer.config.ini.tmp')
 
 def initOptions():
     global options
