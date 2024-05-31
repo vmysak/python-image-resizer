@@ -3,7 +3,6 @@
 
 [Desktop Entry]
 Type=Service
-X-KDE-ServiceTypes=KonqPopupMenu/Plugin
 MimeType=image/*;
 Actions=cr2hdr;resizesq;resizes;resizeq;resizeqs;resizef;
 X-KDE-Priority=TopLevel
