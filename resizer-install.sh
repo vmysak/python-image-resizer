@@ -7,5 +7,5 @@ sudo cp -rf ./resizer.py /usr/bin/resizer
 sudo cp -rf ./cr2hdr-bin /usr/bin/cr2hdr-bin
 sudo chmod +x /usr/bin/resizer
 sudo chmod +x /usr/bin/cr2hdr-bin
-sudo cp -rf ./imageresizer.desktop /usr/share/kservices5/ServiceMenus/
-sudo kbuildsycoca5
+sudo cp -rf ./imageresizer.desktop /usr/share/kio/servicemenus
+sudo kbuildsycoca6
