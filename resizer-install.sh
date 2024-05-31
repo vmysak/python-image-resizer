@@ -1,9 +1,11 @@
 #!/bin/bash
 cd "$(dirname "$0")"
 
-yum install python-pip ImageMagick python3-magic
-pip install Wand configparser argparse
-cp -rf ./resizer.py /usr/bin/resizer
-chmod +x /usr/bin/resizer
-cp -rf ./imageresizer.desktop /usr/share/kservices5/ServiceMenus/
-kbuildsycoca5
+sudo yum install dcraw python-pip ImageMagick python3-magic
+sudo pip install Wand configparser argparse
+sudo cp -rf ./resizer.py /usr/bin/resizer
+sudo cp -rf ./cr2hdr-bin /usr/bin/cr2hdr-bin
+sudo chmod +x /usr/bin/resizer
+sudo chmod +x /usr/bin/cr2hdr-bin
+sudo cp -rf ./imageresizer.desktop /usr/share/kservices5/ServiceMenus/
+sudo kbuildsycoca5

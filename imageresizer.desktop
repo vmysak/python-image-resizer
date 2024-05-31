@@ -5,9 +5,13 @@
 Type=Service
 X-KDE-ServiceTypes=KonqPopupMenu/Plugin
 MimeType=image/*;
-Actions=resizesq;resizes;resizeq;resizeqs;resizef;
+Actions=cr2hdr;resizesq;resizes;resizeq;resizeqs;resizef;
 X-KDE-Priority=TopLevel
-X-KDE-Submenu=Image Resizer
+X-KDE-Submenu=Image Tools
+
+[Desktop Action cr2hdr]
+Name=cr2hdr
+Exec=cr2hdr-bin %f
 
 [Desktop Action resizesq]
 Name=Resize S Q
